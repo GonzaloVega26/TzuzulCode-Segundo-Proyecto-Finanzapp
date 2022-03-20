@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+    <variable
+        name="cardCreationViewModel"
+        type="com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardCreationViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".CardCreationFragment"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- TODO: Update blank fragment layout -->
+        <EditText
+            android:id="@+id/bank_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Bank Name"
+            android:minHeight="48dp"
+            android:text="@={cardCreationViewModel.bankName}"/>
+
+        <EditText
+            android:id="@+id/card_number_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:hint="Enter Card Number"
+            android:text="@={cardCreationViewModel.cardNumber}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter Your Full Name"/>
+
+        <EditText
+            android:id="@+id/owner_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Jon Doe"
+            android:minHeight="48dp"
+            android:text="@={cardCreationViewModel.ownerName}"/>
+
+
+        <EditText
+            android:id="@+id/valid_since_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Valid Since"
+            android:inputType="date"
+            android:text="@={cardCreationViewModel.validSince}"/>
+        <EditText
+            android:id="@+id/valid_thru_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Valid Thru"
+            android:inputType="date"
+            android:text="@={cardCreationViewModel.validThru}"/>
+
+        <EditText
+            android:id="@+id/pin_code_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Enter Pin Code"
+            android:inputType="numberPassword"
+            android:minHeight="48dp"
+            android:text="@={cardCreationViewModel.pinCode}"/>
+
+
+        <Button
+            android:id="@+id/card_insertion_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            />
+
+
+    </LinearLayout>
+</layout>

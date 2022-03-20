@@ -7,7 +7,7 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
 @Dao
 interface CardDao {
     //If the fun returns a liveData element it doesn't need suspend
-    //Suspend: make it asynchronous
+    //Suspend: the code can be paused or resumed
     @Insert
     suspend fun insert(card:Card)
 
@@ -17,9 +17,9 @@ interface CardDao {
     @Update
     suspend fun update(card:Card)
 
-    @Query("SELECT * FROM card")
+    @Query("SELECT * FROM cards")
     fun readAll():LiveData<List<Card>>
 
-    @Query("SELECT * FROM card WHERE id = :idCard")
+    @Query("SELECT * FROM cards WHERE idCard = :idCard")
     fun readOne(idCard:Long):LiveData<Card>
 }
