@@ -1,11 +1,15 @@
 package com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.adapters
 
+import android.content.ContentValues.TAG
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.view.ViewParent
 import android.widget.LinearLayout
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.AccountFragmentDirections
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.R
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.CardItemBinding
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
@@ -31,6 +35,11 @@ class CardItemAdapter: ListAdapter<Card, CardItemAdapter.CardItemViewHolder>(Car
             fun inflateFrom(parent: ViewGroup):CardItemViewHolder{
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CardItemBinding.inflate(layoutInflater, parent, false)
+                binding.imageButton.setOnClickListener {
+                    val action = AccountFragmentDirections.actionAccountFragmentToCardDetailsFragment(binding.card!!.idCard)
+
+                    binding.root.findNavController().navigate(action)
+                }
                 return CardItemViewHolder(binding)
             }
         }

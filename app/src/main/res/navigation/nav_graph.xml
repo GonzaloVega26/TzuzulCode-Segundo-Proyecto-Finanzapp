@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_cardDetailsFragment_to_transactionFragment"
             app:destination="@id/transactionFragment" />
+        <argument
+            android:name="idCard"
+            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/transactionFragment"
