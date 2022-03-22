@@ -10,6 +10,11 @@
             type="com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardViewModel" />
     </data>
 
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,65 +28,17 @@
                 android:layout_height="wrap_content"
                 android:text="Create New Card"/>
 
-            <FrameLayout
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/card_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="wrap_content"
 
-                <ImageButton
-                    android:id="@+id/details_card_btn"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    tools:src="@android:drawable/screen_background_dark"
-                    android:contentDescription="Representation of card" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                />
 
-                    <TextView
-                        android:id="@+id/money"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="16dp"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Dinero"
-                        android:text="@{cardViewModel.firstCard.owner}"/>
-                    <TextView
-                        android:id="@+id/bank_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="60dp"
-                        android:textColor="@color/white"
-                        android:textSize="20sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="Bank Name"
-                        android:text="@{cardViewModel.firstCard.bankName}"/>
-                    <TextView
-                        android:id="@+id/card_number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="32dp"
-                        android:layout_marginTop="120dp"
-                        android:textColor="@color/white"
-                        android:textSize="30sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:text="123 456 789"
-                        android:text="@{cardViewModel.firstCard.cardNumber}"/>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-            </FrameLayout>
 
         </LinearLayout>
+        </ScrollView>
 
 </layout>

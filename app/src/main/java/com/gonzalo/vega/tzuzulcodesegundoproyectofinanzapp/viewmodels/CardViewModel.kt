@@ -11,7 +11,7 @@ import java.sql.Date
 
 class CardViewModel(dao:CardDao):ViewModel() {
     //val cardLiveData = dao.readAll()
-    val firstCard = dao.readOne(1)
+    val cardList = dao.readAll()
 
 
 

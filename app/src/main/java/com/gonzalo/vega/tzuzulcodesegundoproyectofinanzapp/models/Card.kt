@@ -23,4 +23,7 @@ data class Card(
     var validThru: Date = Date(0),
     @ColumnInfo(name = "pin_code")
     var pinCode: Int = 0
-)
+){
+    val readableMoney: String
+        get() = "$" + String.format("%.2f", moneyAmount)
+}
