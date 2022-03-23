@@ -7,8 +7,9 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.converters.DateConverter
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
+import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Payment
 
-@Database(entities = [Card::class], version = 1, exportSchema = false) //exportSchema is for logs
+@Database(entities = [Card::class, Payment::class], version = 2, exportSchema = false) //exportSchema is for logs
 @TypeConverters(DateConverter::class)
 abstract class CardDatabase : RoomDatabase() {
     abstract val cardDao: CardDao
@@ -25,7 +26,8 @@ abstract class CardDatabase : RoomDatabase() {
                     context.applicationContext,
                     CardDatabase::class.java,
                     "card_database"
-                ).build()
+                ).fallbackToDestructiveMigration()
+                    .build()
                 INSTANCE = instance
             }
             return instance

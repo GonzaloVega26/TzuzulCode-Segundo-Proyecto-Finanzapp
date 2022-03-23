@@ -1,16 +1,21 @@
 package com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.converters
 
 import androidx.room.TypeConverter
-import java.sql.Date
+import java.util.*
 
 class DateConverter {
     @TypeConverter
-    fun fromTimestamp(value: Long?): Date? {
-        return value?.let { Date(it) }
+    fun fromTimestamp(value: Long?): Calendar? {
+        return value?.let {
+            var calendar = Calendar.getInstance()
+            var date = Date(it)
+            date.setTime(it)
+                calendar.setTime(date)
+            return calendar }
     }
 
     @TypeConverter
-    fun dateToTimestamp(date: Date?): Long? {
-        return date?.time
+    fun dateToTimestamp(date: Calendar?): Long? {
+        return date?.timeInMillis
     }
 }

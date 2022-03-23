@@ -3,27 +3,41 @@ package com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.sql.Date
+import java.util.*
 
 @Entity(tableName = "cards")
 data class Card(
     @PrimaryKey(autoGenerate = true)
-    var idCard: Long=0L,
+    var idCard: Long = 0L,
+
     @ColumnInfo(name = "bank_name")
-    var bankName: String = "",
+    val bankName: String,
     @ColumnInfo(name = "card_number")
-    var cardNumber: String = "",
+    val cardNumber: String,
     @ColumnInfo(name = "money_amount")
-    var moneyAmount: Double = 0.0,
+    val moneyAmount: Double = 0.0,
     @ColumnInfo(name = "owner_name")
-    var owner: String = "",
+    val owner: String,
     @ColumnInfo(name = "valid_since")
-    var validSince: Date = Date(0),
+    val validSince: Calendar,
     @ColumnInfo(name = "valid_thru")
-    var validThru: Date = Date(0),
+    val validThru: Calendar,
+    @ColumnInfo(name = "image_bg_resource")
+    val imageBG: Int,
+    @ColumnInfo(name = "account_type")
+    val accountType: Boolean,
+    @ColumnInfo(name = "payment_red")
+    val paymentRed: String,
     @ColumnInfo(name = "pin_code")
     var pinCode: Int = 0
-){
+) {
+
+
     val readableMoney: String
         get() = "$" + String.format("%.2f", moneyAmount)
+
+    fun converDateToString(date : Calendar): String{
+
+        return "${date.get(Calendar.MONTH)}/${date.get(Calendar.YEAR)}"
+    }
 }
