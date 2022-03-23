@@ -11,6 +11,7 @@ import androidx.navigation.findNavController
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDatabase
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.FragmentCardCreationBinding
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
+import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.utils.DatePickerFragment
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardCreationViewModel
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardCreationViewModelFactory
 import java.sql.Date
@@ -39,6 +40,9 @@ class CardCreationFragment : Fragment() {
             val action = CardCreationFragmentDirections.actionCardCreationFragmentToAccountFragment()
             view.findNavController().navigate(action)
         }
+        binding.validSinceEditText.setOnClickListener {
+            showDatePickerDialog()
+        }
         return view
     }
 
@@ -46,4 +50,12 @@ class CardCreationFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
     }
+    private fun showDatePickerDialog() {
+        val datePicker = DatePickerFragment { day, month, year -> onDateSelected(day, month, year) }
+        getFragmentManager()?.let { datePicker.show(it, "datePicker") }
+    }
+    private fun onDateSelected(day: Int, month: Int, year: Int) {
+        binding.validSinceEditText.setText("$year/$month/$day")
+    }
+
 }

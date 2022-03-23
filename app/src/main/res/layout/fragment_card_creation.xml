@@ -49,18 +49,16 @@
             android:id="@+id/valid_since_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Valid Since"
+            android:textSize="24sp"
+            android:hint="Enter Valid Since Date"
             android:inputType="date"
-            android:text="@={cardCreationViewModel.validSince}"/>
-        <EditText
-            android:id="@+id/valid_thru_edit_text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:hint="Valid Thru"
-            android:inputType="date"
-            android:text="@={cardCreationViewModel.validThru}"/>
+            android:clickable="false"
+            android:focusable="false"
+            android:text="@={cardCreationViewModel.validSince}"
+            />
+
+
+
 
         <EditText
             android:id="@+id/pin_code_edit_text"
