@@ -41,5 +41,12 @@
         <action
             android:id="@+id/action_cardCreationFragment_to_accountFragment"
             app:destination="@id/accountFragment" />
+        <argument android:name="idCard"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+        <argument
+            android:name="action"
+            app:argType="string" />
     </fragment>
 </navigation>

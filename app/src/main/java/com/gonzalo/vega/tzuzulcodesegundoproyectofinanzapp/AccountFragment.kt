@@ -1,6 +1,7 @@
 package com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp
 
 import android.os.Bundle
+import android.view.ContextMenu
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -36,7 +37,7 @@ class AccountFragment : Fragment() {
         binding.cardViewModel =  viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         binding.createBtn.setOnClickListener {
-           val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment()
+           val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment(action = "create")
             view.findNavController().navigate(action)
 
         }
@@ -46,13 +47,18 @@ class AccountFragment : Fragment() {
         viewModel.cardList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
+
+
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
+        registerForContextMenu(binding.cardList);
     }
+
+
 
 
 }

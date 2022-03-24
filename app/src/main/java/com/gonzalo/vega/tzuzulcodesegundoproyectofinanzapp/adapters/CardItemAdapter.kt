@@ -2,10 +2,9 @@ package com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.adapters
 
 import android.content.ContentValues.TAG
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.ViewGroup
-import android.view.ViewParent
+import android.view.*
 import android.widget.LinearLayout
+import androidx.appcompat.widget.PopupMenu
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -26,50 +25,61 @@ class CardItemAdapter: ListAdapter<Card, CardItemAdapter.CardItemViewHolder>(Car
 
 
 
-    class CardItemViewHolder(val binding:CardItemBinding):RecyclerView.ViewHolder(binding.root){
+    class CardItemViewHolder(val binding:CardItemBinding,):RecyclerView.ViewHolder(binding.root),
+        View.OnClickListener, PopupMenu.OnMenuItemClickListener {
+
+
         fun bind(item: Card){
             binding.card = item
+
+            binding.imageButton.setOnClickListener {
+                val action = AccountFragmentDirections.actionAccountFragmentToCardDetailsFragment(
+                    binding.card!!.idCard!!
+                )
+
+                binding.root.findNavController().navigate(action)
+            }
+            binding.optionMenuBtn.setOnClickListener(this)
+
+
         }
 
         companion object{
             fun inflateFrom(parent: ViewGroup):CardItemViewHolder{
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = CardItemBinding.inflate(layoutInflater, parent, false)
-                binding.imageButton.setOnClickListener {
-                    val action = AccountFragmentDirections.actionAccountFragmentToCardDetailsFragment(binding.card!!.idCard)
 
-                    binding.root.findNavController().navigate(action)
-                }
                 return CardItemViewHolder(binding)
             }
         }
 
-    }
-}
-
-/*
-class TaskItemAdapter: Adapter<TaskItemAdapter.TaskItemViewHolder>() {
-    var data = listOf<Task>()
-    set(value) {
-        field = value
-        notifyDataSetChanged()
-    }
-
-
-
-    class TaskItemViewHolder(val rootView: TextView):RecyclerView.ViewHolder(rootView){
-
-        fun bind(item:Task){
-            rootView.text = item.name
+        override fun onClick(view: View) {
+          val  popUpMenu = PopupMenu(view.context,view)
+            popUpMenu.inflate(R.menu.pop_up_menu)
+            popUpMenu.setOnMenuItemClickListener(this)
+            popUpMenu.show()
         }
 
-        companion object{
-            fun inflateFrom(parent: ViewGroup):TaskItemViewHolder{
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val view = layoutInflater.inflate(R.layout.task_item,parent,false) as TextView
-                return TaskItemViewHolder(view)
+        override fun onMenuItemClick(item: MenuItem): Boolean {
+            return when(item.itemId){
+                R.id.popup_menu_delete ->{
+                    val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment(
+                        idCard=binding.card!!.idCard.toString(), action ="delete")
+
+                    binding.root.findNavController().navigate(action)
+                    true
+                }
+                R.id.popup_menu_edit -> {
+                    val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment(
+                        idCard= binding.card!!.idCard.toString(), action="edit")
+
+                    binding.root.findNavController().navigate(action)
+                    true
+                }
+                else -> false
             }
         }
+
+
     }
 }
- */

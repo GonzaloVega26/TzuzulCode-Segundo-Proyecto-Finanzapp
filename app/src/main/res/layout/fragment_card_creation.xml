@@ -69,6 +69,14 @@
             android:minHeight="48dp"
             android:text="@={cardCreationViewModel.pinCode}"/>
 
+        <EditText
+            android:id="@+id/prueba_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Prueba Value"
+            android:inputType="text"
+            android:minHeight="48dp"
+            android:text="@{cardCreationViewModel.prueba2Card.bankName}"/>
 
         <Button
             android:id="@+id/card_insertion_btn"
