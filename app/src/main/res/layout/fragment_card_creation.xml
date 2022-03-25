@@ -16,13 +16,27 @@
         android:padding="16dp">
 
         <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/id_card_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:text="@{cardCreationViewModel.sourceCard.readableIdCard}"
+            />
+        <TextView
+            android:id="@+id/money_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:text="@{cardCreationViewModel.sourceCard.readableMoney}"
+            />
         <EditText
             android:id="@+id/bank_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Enter Bank Name"
             android:minHeight="48dp"
-            android:text="@={cardCreationViewModel.bankName}"/>
+            android:text="@{cardCreationViewModel.sourceCard.bankName}"/>
 
         <EditText
             android:id="@+id/card_number_edit_text"
@@ -30,7 +44,7 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:hint="Enter Card Number"
-            android:text="@={cardCreationViewModel.cardNumber}"/>
+            android:text="@{cardCreationViewModel.sourceCard.cardNumber}"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -42,7 +56,7 @@
             android:layout_height="wrap_content"
             android:hint="Jon Doe"
             android:minHeight="48dp"
-            android:text="@={cardCreationViewModel.ownerName}"/>
+            android:text="@{cardCreationViewModel.sourceCard.owner}"/>
 
 
         <EditText
@@ -54,11 +68,8 @@
             android:inputType="date"
             android:clickable="false"
             android:focusable="false"
-            android:text="@={cardCreationViewModel.validSince}"
+            android:text="@{cardCreationViewModel.sourceCard.converDateToString(cardCreationViewModel.sourceCard.validSince)}"
             />
-
-
-
 
         <EditText
             android:id="@+id/pin_code_edit_text"
@@ -67,16 +78,41 @@
             android:hint="Enter Pin Code"
             android:inputType="numberPassword"
             android:minHeight="48dp"
-            android:text="@={cardCreationViewModel.pinCode}"/>
+            android:text="@{cardCreationViewModel.sourceCard.pinCode}"/>
 
-        <EditText
-            android:id="@+id/prueba_edit_text"
+
+        <Switch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:showText="true"
+            android:textOn="Credit"
+            android:textOff="Debit"
+            android:text="Card Type: "
+            android:textSize="16sp"
+
+            />
+
+        <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Prueba Value"
-            android:inputType="text"
-            android:minHeight="48dp"
-            android:text="@{cardCreationViewModel.prueba2Card.bankName}"/>
+            android:orientation="vertical"
+            android:text="Select Color of Card"
+            >
+            <RadioButton
+                android:id="@+id/rgv1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="red Color"
+                android:checked="true"
+                />
+            <RadioButton
+                android:text="Blue Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+
+        </RadioGroup>
 
         <Button
             android:id="@+id/card_insertion_btn"

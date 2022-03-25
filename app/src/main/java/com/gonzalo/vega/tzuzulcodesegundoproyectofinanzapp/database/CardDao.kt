@@ -17,6 +17,9 @@ interface CardDao {
     @Delete
    suspend fun deleteCard(card:Card)
 
+    @Query("DELETE FROM cards WHERE idCard= :idCard")
+    suspend fun deleteCardById(idCard:Long)
+
     @Query("SELECT * FROM cards")
     fun readAllCards():LiveData<List<Card>>
 

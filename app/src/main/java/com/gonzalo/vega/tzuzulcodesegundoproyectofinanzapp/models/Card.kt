@@ -29,7 +29,7 @@ data class Card(
     @ColumnInfo(name = "payment_red")
     val paymentRed: String,
     @ColumnInfo(name = "pin_code")
-    var pinCode: Int = 0
+    var pinCode: String = "0"
 ) {
 
 
@@ -37,7 +37,11 @@ data class Card(
         get() = "$" + String.format("%.2f", moneyAmount)
 
     fun converDateToString(date : Calendar): String{
-
-        return "${date.get(Calendar.MONTH)}/${date.get(Calendar.YEAR)}"
+        if(date == null){
+            return ""
+        }else return "${date.get(Calendar.MONTH)}/${date.get(Calendar.YEAR)}"
     }
+
+    val readableIdCard: String
+        get() =idCard.toString()
 }

@@ -37,7 +37,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
                     android:contentDescription="@string/card_reader"
-                    tools:src="@android:drawable/screen_background_dark" />
+                    tools:src="@android:drawable/screen_background_dark"
+                    android:src="@drawable/fondo_tarjeta_1"/>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
