@@ -84,29 +84,29 @@
                         app:layout_constraintTop_toTopOf="parent"
                         tools:text="123 456 789" />
 
-                    <TextView
-                        android:id="@+id/since"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginBottom="24dp"
-                        android:text="@{viewModel.card.converDateToString(viewModel.card.validSince)}"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toTopOf="@+id/owner_name"
-                        app:layout_constraintStart_toStartOf="parent"
-                        tools:text="Valid Since" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/since"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="8dp"-->
+<!--                        android:layout_marginBottom="24dp"-->
+<!--                        android:textSize="16sp"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/owner_name"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        tools:text="Valid Since" />-->
+<!--&lt;!&ndash;                        android:text="@{viewModel.card.converDateToString(viewModel.card.validSince)}"&ndash;&gt;-->
 
-                    <TextView
-                        android:id="@+id/thru"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="24dp"
-                        android:layout_marginBottom="24dp"
-                        android:text="@{viewModel.card.converDateToString(viewModel.card.validThru)}"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toTopOf="@+id/owner_name"
-                        app:layout_constraintStart_toEndOf="@+id/since"
-                        tools:text="Valid Thru" />
+<!--                    <TextView-->
+<!--                        android:id="@+id/thru"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="24dp"-->
+<!--                        android:layout_marginBottom="24dp"-->
+<!--                        android:textSize="16sp"-->
+<!--                        app:layout_constraintBottom_toTopOf="@+id/owner_name"-->
+<!--                        app:layout_constraintStart_toEndOf="@+id/since"-->
+<!--                        tools:text="Valid Thru" />-->
+<!--&lt;!&ndash;                        android:text="@{viewModel.card.converDateToString(viewModel.card.validThru)}"&ndash;&gt;-->
 
                     <TextView
                         android:id="@+id/owner_name"

@@ -11,8 +11,11 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.relations.Card
 interface CardDao {
     //If the fun returns a liveData element it doesn't need suspend
     //Suspend: the code can be paused or resumed
-    @Insert(onConflict = REPLACE)
+    @Insert
     suspend fun insertCard(card:Card)
+
+    @Update
+    suspend fun updateCard(card:Card)
 
     @Delete
    suspend fun deleteCard(card:Card)

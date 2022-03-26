@@ -36,18 +36,27 @@ class AccountFragment : Fragment() {
         val viewModel= ViewModelProvider(this,viewModelFactory).get(CardViewModel::class.java)
         binding.cardViewModel =  viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
         binding.createBtn.setOnClickListener {
-           val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment(action = "create")
+           val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment()
             view.findNavController().navigate(action)
 
         }
 
-        val adapter = CardItemAdapter()
+        val adapter = CardItemAdapter{idCard->viewModel.onCardClicked(idCard)}
+
         binding.cardList.adapter = adapter
         viewModel.cardList.observe(viewLifecycleOwner, Observer {
             adapter.submitList(it)
         })
 
+        viewModel.navigateToCard.observe(viewLifecycleOwner,Observer{
+            it?.let {
+                val action = AccountFragmentDirections.actionAccountFragmentToCardDetailsFragment(it)
+                viewModel.onCardNavigated()
+                this.findNavController().navigate(action)
+            }
+        })
 
         return view
     }
@@ -59,7 +68,10 @@ class AccountFragment : Fragment() {
     }
 
 
-
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
 
 

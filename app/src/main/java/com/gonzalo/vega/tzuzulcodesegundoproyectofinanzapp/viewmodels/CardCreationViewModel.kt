@@ -11,31 +11,24 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
 class CardCreationViewModel(val dao:CardDao): ViewModel() {
+    private val _canNavigate= MutableLiveData<Boolean>()
+    val canNavigate: LiveData<Boolean>
+        get() = _canNavigate
 
-    var sourceCard: LiveData<Card>? = null
+    var card = Card()
 
-
-
-    fun addCard(card:Card){
+    fun addCard(){
          viewModelScope.launch{
+             Log.d("aber", "$card" )
+
               dao.insertCard(card)
+             _canNavigate.value = true
          }
     }
 
-    fun deleteCard(idCard:Long){
-        viewModelScope.launch{
-            dao.deleteCardById(idCard)
-        }
-    }
 
-    fun findCard(idCard: Long){
-        sourceCard = dao.readOneCard(idCard)
-    }
-
-    fun detectRadioButon(id:Int){
-        when(id){
-
-        }
+    fun onNavigated(){
+        _canNavigate.value = false
     }
 
 }

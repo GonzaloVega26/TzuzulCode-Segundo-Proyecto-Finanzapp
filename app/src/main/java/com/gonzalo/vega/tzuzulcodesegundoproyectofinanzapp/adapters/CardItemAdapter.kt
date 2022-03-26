@@ -13,12 +13,12 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.R
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.CardItemBinding
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
 
-class CardItemAdapter: ListAdapter<Card, CardItemAdapter.CardItemViewHolder>(CardDiffItemCallback()) {
+class CardItemAdapter(private val clickListener:(id:Long)->Unit): ListAdapter<Card, CardItemAdapter.CardItemViewHolder>(CardDiffItemCallback()) {
 
 
     override fun onBindViewHolder(holder:CardItemViewHolder, position: Int){
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(item,clickListener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardItemViewHolder = CardItemViewHolder.inflateFrom(parent)
@@ -29,16 +29,10 @@ class CardItemAdapter: ListAdapter<Card, CardItemAdapter.CardItemViewHolder>(Car
         View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
 
-        fun bind(item: Card){
+        fun bind(item: Card, clickListener:(id:Long)->Unit){
             binding.card = item
 
-            binding.imageButton.setOnClickListener {
-                val action = AccountFragmentDirections.actionAccountFragmentToCardDetailsFragment(
-                    binding.card!!.idCard!!
-                )
-
-                binding.root.findNavController().navigate(action)
-            }
+            binding.imageButton.setOnClickListener {clickListener(item.idCard)}
             binding.optionMenuBtn.setOnClickListener(this)
 
 
@@ -63,15 +57,13 @@ class CardItemAdapter: ListAdapter<Card, CardItemAdapter.CardItemViewHolder>(Car
         override fun onMenuItemClick(item: MenuItem): Boolean {
             return when(item.itemId){
                 R.id.popup_menu_delete ->{
-                    val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment(
-                        idCard=binding.card!!.idCard.toString(), action ="delete")
 
-                    binding.root.findNavController().navigate(action)
                     true
                 }
                 R.id.popup_menu_edit -> {
-                    val action = AccountFragmentDirections.actionAccountFragmentToCardCreationFragment(
-                        idCard= binding.card!!.idCard.toString(), action="edit")
+                    val action = AccountFragmentDirections.actionAccountFragmentToCardEditFragment(
+                         binding.card!!.idCard
+                    )
 
                     binding.root.findNavController().navigate(action)
                     true

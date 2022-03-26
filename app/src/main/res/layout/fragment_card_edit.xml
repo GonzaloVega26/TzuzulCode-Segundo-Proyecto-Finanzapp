@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-    <variable
-        name="viewModel"
-        type="com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardCreationViewModel" />
+        <variable
+            name="viewModel"
+            type="com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardEditViewModel" />
+
     </data>
 
     <LinearLayout
@@ -15,21 +16,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TODO: Update blank fragment layout -->
-<!--        <TextView-->
-<!--            android:id="@+id/id_card_text_view"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:visibility="invisible"-->
-<!--            android:text="@={viewModel.card.idCard}"-->
-<!--            />-->
-<!--        <TextView-->
-<!--            android:id="@+id/money_text_view"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:visibility="invisible"-->
-<!--            android:text="@{cardCreationViewModel.sourceCard.readableMoney}"-->
-<!--            />-->
         <EditText
             android:id="@+id/bank_name_edit_text"
             android:layout_width="match_parent"
@@ -121,7 +107,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Enviar"
-            android:onClick="@{()->viewModel.addCard()}"
+            android:onClick="@{()->viewModel.update()}"
+            />
+
+        <Button
+            android:id="@+id/card_delete_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Delete"
+            android:onClick="@{()->viewModel.delete()}"
             />
 
 

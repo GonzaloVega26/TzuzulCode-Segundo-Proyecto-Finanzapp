@@ -11,36 +11,33 @@ data class Card(
     var idCard: Long = 0L,
 
     @ColumnInfo(name = "bank_name")
-    val bankName: String,
+    var bankName: String ="",
     @ColumnInfo(name = "card_number")
-    val cardNumber: String,
+    var cardNumber: String="",
     @ColumnInfo(name = "money_amount")
-    val moneyAmount: Double = 0.0,
+    var moneyAmount: Double = 0.0,
     @ColumnInfo(name = "owner_name")
-    val owner: String,
+    var owner: String="",
     @ColumnInfo(name = "valid_since")
-    val validSince: Calendar,
+    var validSince: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "valid_thru")
-    val validThru: Calendar,
+    var validThru: Calendar = Calendar.getInstance(),
     @ColumnInfo(name = "image_bg_resource")
-    val imageBG: Int,
+    var imageBG: Int = 0,
     @ColumnInfo(name = "account_type")
-    val accountType: Boolean,
+    var accountType: Boolean = true,
     @ColumnInfo(name = "payment_red")
-    val paymentRed: String,
+    var paymentRed: String = "",
     @ColumnInfo(name = "pin_code")
-    var pinCode: String = "0"
+    var pinCode: String = ""
 ) {
 
 
     val readableMoney: String
         get() = "$" + String.format("%.2f", moneyAmount)
 
-    fun converDateToString(date : Calendar): String{
-        if(date == null){
-            return ""
-        }else return "${date.get(Calendar.MONTH)}/${date.get(Calendar.YEAR)}"
-    }
+    var validSinceStr = ""
+
 
     val readableIdCard: String
         get() =idCard.toString()

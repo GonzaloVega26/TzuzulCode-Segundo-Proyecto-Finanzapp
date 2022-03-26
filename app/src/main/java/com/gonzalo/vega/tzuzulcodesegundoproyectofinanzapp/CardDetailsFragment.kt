@@ -28,11 +28,14 @@ class CardDetailsFragment : Fragment() {
     val viewModelFactory = CardDetailsViewModelFactory(dao,idCard)
     val viewModel = ViewModelProvider(this, viewModelFactory).get(CardDetailsViewModel::class.java)
 
-
-
         binding.viewModel=viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return view
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
