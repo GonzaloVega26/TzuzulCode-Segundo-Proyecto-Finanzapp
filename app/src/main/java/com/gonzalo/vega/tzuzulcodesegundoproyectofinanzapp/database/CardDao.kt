@@ -29,24 +29,8 @@ interface CardDao {
     @Query("SELECT * FROM cards WHERE idCard = :idCard")
     fun readOneCard(idCard:Long):LiveData<Card>
 
-    @Query("SELECT * FROM cards WHERE idCard = :idCard")
-    fun readOneCardSoncronous(idCard:Long):Card
-        /* DAO FOR TRANSACTIONS*/
-    @Insert
-    suspend fun insertTransaction(payment : Payment)
-
-    @Delete
-    suspend fun deleteTransaction(payment : Payment)
-
-    @Update
-    suspend fun updateTransaction(payment : Payment)
 
 
-    @Query("SELECT * FROM transactions")
-    fun readAllTransactions():LiveData<List<Payment>>
-
-    @Query("SELECT * FROM transactions WHERE idPayment= :idPayment")
-    fun readOneTransaction(idPayment:Long):LiveData<Payment>
 
     @Transaction
     @Query("SELECT * FROM cards WHERE idCard = :idCard")

@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDatabase
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.FragmentCardDetailsBinding
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardDetailsViewModel
@@ -30,8 +32,34 @@ class CardDetailsFragment : Fragment() {
 
         binding.viewModel=viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        /* This way the image backgrounds loads when the livedata has value*/
+       viewModel.card.observe(viewLifecycleOwner,Observer{
+           binding.imageButton.setImageResource(it.imageBG)
+       })
+
+        viewModel.navigateToAddMoney.observe(viewLifecycleOwner,Observer{
+            it?.let {
+                val action = CardDetailsFragmentDirections.actionCardDetailsFragmentToAddMoneyFragment(it)
+                viewModel.onButtonAddMoneyNavigated()
+                this.findNavController().navigate(action)
+            }
+        })
+
+        viewModel.navigateToSendMoney.observe(viewLifecycleOwner,Observer{
+            it?.let {
+                val action = CardDetailsFragmentDirections.actionCardDetailsFragmentToSendMoneyFragment(it)
+                viewModel.onButtonSendMoneyNavigated()
+                this.findNavController().navigate(action)
+            }
+        })
+
+
         return view
     }
+
+
+
 
     override fun onDestroyView() {
         super.onDestroyView()

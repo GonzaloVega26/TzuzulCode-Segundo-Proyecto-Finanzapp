@@ -6,9 +6,7 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.R
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDao
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
 import kotlinx.coroutines.launch
-import java.util.*
-import java.util.concurrent.CountDownLatch
-import java.util.concurrent.TimeUnit
+
 
 class CardCreationViewModel(val dao:CardDao): ViewModel() {
     private val _canNavigate= MutableLiveData<Boolean>()
@@ -19,9 +17,12 @@ class CardCreationViewModel(val dao:CardDao): ViewModel() {
 
     fun addCard(){
          viewModelScope.launch{
-             Log.d("aber", "$card" )
+             Log.d("aber", "El id temp es ${card.imgTemp} y el BG ${card.imageBG}")
+             selectBackgroundImage(card.imgTemp)
+             Log.d("aber", "El id temp es ${card.imgTemp} y el BG ${card.imageBG}")
 
               dao.insertCard(card)
+             Log.d("aber", "El id temp es ${card.imgTemp} y el BG ${card.imageBG}")
              _canNavigate.value = true
          }
     }
@@ -31,4 +32,20 @@ class CardCreationViewModel(val dao:CardDao): ViewModel() {
         _canNavigate.value = false
     }
 
+    private fun selectBackgroundImage(id:Int){
+        when(id){
+            R.id.radio_group_value1-> {
+                Log.d("aber","Elegi el azul")
+                card.imageBG = R.drawable.fondo_tarjeta_1
+            }
+            R.id.radio_group_value2-> {
+                Log.d("aber","Elegi el rojo")
+                card.imageBG = R.drawable.fondo_tarjeta_2
+            }
+            R.id.radio_group_value3-> {
+                Log.d("aber","Elegi el violeta")
+                card.imageBG = R.drawable.fondo_tarjeta_3
+            }
+        }
+    }
 }

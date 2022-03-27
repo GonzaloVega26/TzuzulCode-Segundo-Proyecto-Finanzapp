@@ -31,7 +31,7 @@ data class Card(
     @ColumnInfo(name = "pin_code")
     var pinCode: String = ""
 ) {
-
+    var imgTemp = 0
 
     val readableMoney: String
         get() = "$" + String.format("%.2f", moneyAmount)
@@ -39,6 +39,10 @@ data class Card(
     var validSinceStr = ""
 
 
+
     val readableIdCard: String
         get() =idCard.toString()
+
+    val readableSince get()= "${validSince.get(Calendar.MONTH)}/${validSince.get(Calendar.YEAR)}"
+    val readableThru get()= "${validThru.get(Calendar.MONTH)}/${validThru.get(Calendar.YEAR)}"
 }

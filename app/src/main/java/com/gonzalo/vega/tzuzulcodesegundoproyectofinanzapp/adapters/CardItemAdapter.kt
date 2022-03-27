@@ -31,7 +31,7 @@ class CardItemAdapter(private val clickListener:(id:Long)->Unit): ListAdapter<Ca
 
         fun bind(item: Card, clickListener:(id:Long)->Unit){
             binding.card = item
-
+            binding.imageButton.setImageResource(item.imageBG)
             binding.imageButton.setOnClickListener {clickListener(item.idCard)}
             binding.optionMenuBtn.setOnClickListener(this)
 

@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.R
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDatabase
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.FragmentCardEditBinding
+import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.utils.MonthYearPickerDialog
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardEditViewModel
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardEditViewModelFactory
 
@@ -53,6 +54,17 @@ class CardEditFragment : Fragment() {
             Log.d("aber","En Fragment dentro del if $delete")
             viewModel.delete()
         }
+        /*---------Listener for Custom Date Picker---------*/
+        binding.validSinceEditText.setOnClickListener {
+            MonthYearPickerDialog().apply {
+                setListener { _, year, month, _ ->
+                    val date = "${month+1}/$year"
+                    binding.validSinceEditText.setText(date)
+                }
+                show(this@CardEditFragment.parentFragmentManager, "MonthYearPickerDialog")
+            }
+        }
+
 
 
        return view

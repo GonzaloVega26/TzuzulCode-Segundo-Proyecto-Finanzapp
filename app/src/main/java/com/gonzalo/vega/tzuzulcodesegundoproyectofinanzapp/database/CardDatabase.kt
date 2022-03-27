@@ -9,10 +9,11 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.converters.D
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Payment
 
-@Database(entities = [Card::class, Payment::class], version = 4, exportSchema = false) //exportSchema is for logs
+@Database(entities = [Card::class, Payment::class], version = 6, exportSchema = false) //exportSchema is for logs
 @TypeConverters(DateConverter::class)
 abstract class CardDatabase : RoomDatabase() {
     abstract val cardDao: CardDao
+    abstract val paymentDao: PaymentDao
 
     companion object {
         @Volatile //Changes are visible to others threads

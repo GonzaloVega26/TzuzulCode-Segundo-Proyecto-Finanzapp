@@ -15,21 +15,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- TODO: Update blank fragment layout -->
-<!--        <TextView-->
-<!--            android:id="@+id/id_card_text_view"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:visibility="invisible"-->
-<!--            android:text="@={viewModel.card.idCard}"-->
-<!--            />-->
-<!--        <TextView-->
-<!--            android:id="@+id/money_text_view"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:visibility="invisible"-->
-<!--            android:text="@{cardCreationViewModel.sourceCard.readableMoney}"-->
-<!--            />-->
         <EditText
             android:id="@+id/bank_name_edit_text"
             android:layout_width="match_parent"
@@ -81,7 +66,7 @@
             android:text="@{viewModel.card.pinCode}"/>
 
 
-        <Switch
+        <com.google.android.material.switchmaterial.SwitchMaterial
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:showText="true"
@@ -98,18 +83,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:text="Select Color of Card"
-            android:checkedButton="@={viewModel.card.imageBG}"
+            android:checkedButton="@={viewModel.card.imgTemp}"
             >
             <RadioButton
-                android:id="@+id/rgv1"
+                android:id="@+id/radio_group_value1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="red Color"
+                android:text="Blue Color"
                 android:checked="true"
                 />
             <RadioButton
-                android:id="@+id/rgv2"
-                android:text="Blue Color"
+                android:id="@+id/radio_group_value2"
+                android:text="Red Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <RadioButton
+                android:id="@+id/radio_group_value3"
+                android:text="Violet Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 />
