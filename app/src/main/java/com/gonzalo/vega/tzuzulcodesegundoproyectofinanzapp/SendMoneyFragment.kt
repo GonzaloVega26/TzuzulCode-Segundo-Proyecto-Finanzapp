@@ -9,10 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDatabase
-import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.FragmentAddMoneyBinding
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.FragmentSendMoneyBinding
-import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.AddMoneyViewModel
-import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.AddMoneyViewModelFactory
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.SendMoneyViewModel
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.factories.SendMoneyViewModelFactory
 

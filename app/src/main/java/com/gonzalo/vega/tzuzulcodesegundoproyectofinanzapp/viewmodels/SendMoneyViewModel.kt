@@ -15,7 +15,7 @@ class SendMoneyViewModel(val cardDao: CardDao, val paymentDao: PaymentDao, val i
 
     val card = cardDao.readOneCard(idCard)
     val payment = Payment()
-    var errorMessage = "No errors"
+    var errorMessage: MutableLiveData<String> = MutableLiveData<String>("")
 
     private val _canNavigate= MutableLiveData<Boolean>()
     val canNavigate: LiveData<Boolean>
@@ -27,35 +27,31 @@ class SendMoneyViewModel(val cardDao: CardDao, val paymentDao: PaymentDao, val i
     val todayDateString get()= "Payment Date :${todayDate.get(Calendar.DAY_OF_MONTH)}/${todayDate.get(
         Calendar.MONTH)}/" +
             "${todayDate.get(Calendar.YEAR)}"
-    fun addMoney(){
+    fun sendMoney(){
         viewModelScope.launch {
-            Log.d("aber","El dinero es $money")
             if(validateMoney()){
                 payment.amountTransferred= money.toDouble()
                 payment.idOfCard= idCard
                 payment.destination="other"
                 payment.paymentDate = todayDate
-                Log.d("aber","El dinero es $payment")
                 paymentDao.insertTransaction(payment)
                 updateCard()
                 _canNavigate.value= true
             }else{
-                errorMessage = "Insufficient Funds"
+                errorMessage.value = "Insufficient Funds"
             }
 
         }
     }
 
-    fun updateCard(){
+    private fun updateCard(){
         viewModelScope.launch{
-            Log.d("aber", "La tarjeta es ${card.value}")
-
             card.value!!.moneyAmount -= money.toDouble()
             cardDao.updateCard(card.value!!)
 
         }
     }
-    fun validateMoney():Boolean{
+    private fun validateMoney():Boolean{
         return card.value!!.moneyAmount >= money.toDouble()
     }
 

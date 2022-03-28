@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.R
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDao
 import kotlinx.coroutines.launch
+import java.util.*
 
 class CardEditViewModel(val dao:CardDao,idCard:Long): ViewModel() {
 
@@ -19,6 +20,7 @@ class CardEditViewModel(val dao:CardDao,idCard:Long): ViewModel() {
     fun update(){
         viewModelScope.launch {
             selectBackgroundImage(card.value!!.imgTemp)
+            correctDate()
         dao.updateCard(card.value!!)
             _navigateToAccount.value = true
         }
@@ -51,6 +53,17 @@ class CardEditViewModel(val dao:CardDao,idCard:Long): ViewModel() {
                 card.value!!.imageBG = R.drawable.fondo_tarjeta_3
             }
         }
+    }
+    private fun correctDate(){
+        val dateArr = card.value!!.validSinceStr.split("/")
+        card.value!!.validSince.set(Calendar.MONTH, dateArr[0].toInt())
+        card.value!!.validSince.set(Calendar.YEAR, dateArr[1].toInt())
+        card.value!!.validSince.set(Calendar.DAY_OF_MONTH, 1)
+
+
+        card.value!!.validThru.set(card.value!!.validSince.get(Calendar.YEAR),
+            card.value!!.validSince.get(Calendar.MONTH),1)
+        card.value!!.validThru.add(Calendar.YEAR,5)
     }
 
 }

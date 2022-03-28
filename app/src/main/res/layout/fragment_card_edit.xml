@@ -14,113 +14,160 @@
         android:layout_height="match_parent"
         tools:context=".CardCreationFragment"
         android:orientation="vertical"
-        android:padding="16dp">
-
+        android:paddingTop="5dp"
+        android:paddingHorizontal="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:text="Modify Your Card"
+            android:textSize="34sp"
+            android:textStyle="bold" />
         <EditText
             android:id="@+id/bank_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Bank Name"
-            android:minHeight="48dp"
-            android:text="@={viewModel.card.bankName}"/>
+            android:layout_marginBottom="12dp"
+            android:hint="@string/enter_bank_name"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:text="@={viewModel.card.bankName}"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/card_number_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:autofillHints="creditCardNumber"
+            android:hint="@string/enter_card_number"
             android:inputType="number"
-            android:hint="Enter Card Number"
-            android:text="@={viewModel.card.cardNumber}"/>
+            android:text="@={viewModel.card.cardNumber}"
+            android:textSize="18sp" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter Your Full Name"/>
+            android:layout_marginBottom="12dp"
+            android:text="@string/enter_your_full_name"
+            android:textSize="16sp"
+            android:textStyle="italic" />
 
         <EditText
             android:id="@+id/owner_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Jon Doe"
-            android:minHeight="48dp"
-            android:text="@={viewModel.card.owner}"/>
+            android:layout_marginBottom="12dp"
+            android:autofillHints="name"
+            android:hint="@string/jon_doe"
+            android:inputType="text"
+            android:text="@={viewModel.card.owner}"
+            android:textSize="18sp" />
 
 
         <EditText
             android:id="@+id/valid_since_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:hint="Enter Valid Since Date"
-            android:inputType="date"
+            android:layout_marginBottom="12dp"
+            android:autofillHints="creditCardExpirationDate"
             android:clickable="false"
             android:focusable="false"
+            android:hint="@string/enter_since_date"
+            android:inputType="date"
             android:text="@={viewModel.card.validSinceStr}"
-            />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/pin_code_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Enter Pin Code"
+            android:layout_marginBottom="12dp"
+            android:autofillHints="creditCardSecurityCode"
+            android:hint="@string/enter_pin_code"
             android:inputType="numberPassword"
-            android:minHeight="48dp"
-            android:text="@{viewModel.card.pinCode}"/>
+            android:text="@{viewModel.card.pinCode}"
+            android:textSize="18sp" />
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:hint="@string/select_credit_or_debit"
+            android:text="@{viewModel.card.pinCode}"
+            android:textSize="18sp"
+            android:textStyle="italic" />
 
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
+        <ToggleButton
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="12dp"
+            android:textOn="@string/credit"
+            android:textOff="@string/debit"
+            android:textSize="18sp"
+            android:checked="@={viewModel.card.accountType}"/>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:showText="true"
-            android:textOn="Credit"
-            android:textOff="Debit"
-            android:text="Card Type: "
-            android:textSize="16sp"
-            android:checked="@={viewModel.card.accountType}"
-            />
-
+            android:layout_marginBottom="12dp"
+            android:text="@string/style_it"
+            android:textSize="18sp" />
         <RadioGroup
             android:id="@+id/radio_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:text="Select Color of Card"
+            android:layout_marginBottom="12dp"
             android:checkedButton="@={viewModel.card.imgTemp}"
-            >
+            android:orientation="horizontal"
+            android:textSize="18sp">
+
             <RadioButton
                 android:id="@+id/radio_group_value1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Blue Color"
+                android:layout_weight="1"
                 android:checked="true"
-                />
+                android:text="@string/blue_color" />
+
             <RadioButton
                 android:id="@+id/radio_group_value2"
-                android:text="Red Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_weight="1"
+                android:text="@string/red_color" />
+
             <RadioButton
                 android:id="@+id/radio_group_value3"
-                android:text="Violet Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:layout_weight="1"
+                android:text="@string/violet_color" />
 
         </RadioGroup>
 
         <Button
             android:id="@+id/card_insertion_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Enviar"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
             android:onClick="@{()->viewModel.update()}"
-            />
+            android:text="@string/save_changes"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/card_delete_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:text="@string/delete"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:backgroundTint="@color/pale_red"
             android:onClick="@{()->viewModel.delete()}"
             />
 

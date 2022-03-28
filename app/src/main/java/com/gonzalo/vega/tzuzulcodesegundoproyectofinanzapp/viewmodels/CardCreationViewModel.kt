@@ -6,6 +6,7 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.R
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDao
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
 import kotlinx.coroutines.launch
+import java.util.*
 
 
 class CardCreationViewModel(val dao:CardDao): ViewModel() {
@@ -17,12 +18,11 @@ class CardCreationViewModel(val dao:CardDao): ViewModel() {
 
     fun addCard(){
          viewModelScope.launch{
-             Log.d("aber", "El id temp es ${card.imgTemp} y el BG ${card.imageBG}")
-             selectBackgroundImage(card.imgTemp)
-             Log.d("aber", "El id temp es ${card.imgTemp} y el BG ${card.imageBG}")
 
+             selectBackgroundImage(card.imgTemp)
+             correctDate()
               dao.insertCard(card)
-             Log.d("aber", "El id temp es ${card.imgTemp} y el BG ${card.imageBG}")
+
              _canNavigate.value = true
          }
     }
@@ -34,18 +34,21 @@ class CardCreationViewModel(val dao:CardDao): ViewModel() {
 
     private fun selectBackgroundImage(id:Int){
         when(id){
-            R.id.radio_group_value1-> {
-                Log.d("aber","Elegi el azul")
-                card.imageBG = R.drawable.fondo_tarjeta_1
-            }
-            R.id.radio_group_value2-> {
-                Log.d("aber","Elegi el rojo")
-                card.imageBG = R.drawable.fondo_tarjeta_2
-            }
-            R.id.radio_group_value3-> {
-                Log.d("aber","Elegi el violeta")
-                card.imageBG = R.drawable.fondo_tarjeta_3
-            }
+            R.id.radio_group_value1->  card.imageBG = R.drawable.fondo_tarjeta_1
+            R.id.radio_group_value2->  card.imageBG = R.drawable.fondo_tarjeta_2
+            R.id.radio_group_value3->  card.imageBG = R.drawable.fondo_tarjeta_3
+
         }
+    }
+
+    private fun correctDate(){
+        val dateArr = card.validSinceStr.split("/")
+        card.validSince.set(Calendar.MONTH, dateArr[0].toInt())
+        card.validSince.set(Calendar.YEAR, dateArr[1].toInt())
+        card.validSince.set(Calendar.DAY_OF_MONTH, 1)
+
+        card.validThru.set(card.validSince.get(Calendar.YEAR),card.validSince.get(Calendar.MONTH),1)
+        card.validThru.add(Calendar.YEAR,5)
+
     }
 }

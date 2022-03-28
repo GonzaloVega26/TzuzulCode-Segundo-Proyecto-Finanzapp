@@ -25,7 +25,7 @@ class CardItemAdapter(private val clickListener:(id:Long)->Unit): ListAdapter<Ca
 
 
 
-    class CardItemViewHolder(val binding:CardItemBinding,):RecyclerView.ViewHolder(binding.root),
+    class CardItemViewHolder(val binding:CardItemBinding):RecyclerView.ViewHolder(binding.root),
         View.OnClickListener, PopupMenu.OnMenuItemClickListener {
 
 

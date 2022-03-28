@@ -8,14 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
-import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.R
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDatabase
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.FragmentCardEditBinding
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.utils.MonthYearPickerDialog
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardEditViewModel
-import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardEditViewModelFactory
+import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.factories.CardEditViewModelFactory
 
 class CardEditFragment : Fragment() {
 

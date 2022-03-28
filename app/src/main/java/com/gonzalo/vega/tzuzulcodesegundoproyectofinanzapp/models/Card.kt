@@ -38,11 +38,13 @@ data class Card(
 
     var validSinceStr = ""
 
+fun getReadableSinceDate() = "Valid Since: \n ${validSince.get(Calendar.MONTH)}/${validSince.get(Calendar.YEAR)}"
+fun getReadableThruDate() = "Valid Thru: \n ${validThru.get(Calendar.MONTH)}/${validThru.get(Calendar.YEAR)}"
 
-
-    val readableIdCard: String
-        get() =idCard.toString()
-
-    val readableSince get()= "${validSince.get(Calendar.MONTH)}/${validSince.get(Calendar.YEAR)}"
-    val readableThru get()= "${validThru.get(Calendar.MONTH)}/${validThru.get(Calendar.YEAR)}"
+//
+//    val readableIdCard: String
+//        get() =idCard.toString()
+//
+//    val readableSince get()= "${validSince.get(Calendar.MONTH)}/${validSince.get(Calendar.YEAR)}"
+//    val readableThru get()= "${validThru.get(Calendar.MONTH)}/${validThru.get(Calendar.YEAR)}"
 }

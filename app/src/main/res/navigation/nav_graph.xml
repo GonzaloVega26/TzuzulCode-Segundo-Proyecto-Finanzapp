@@ -25,9 +25,6 @@
         android:name="com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.CardDetailsFragment"
         android:label="fragment_card_details"
         tools:layout="@layout/fragment_card_details" >
-        <action
-            android:id="@+id/action_cardDetailsFragment_to_transactionFragment"
-            app:destination="@id/transactionFragment" />
         <argument
             android:name="idCard"
             app:argType="long" />
@@ -37,12 +34,10 @@
         <action
             android:id="@+id/action_cardDetailsFragment_to_sendMoneyFragment"
             app:destination="@id/sendMoneyFragment" />
+        <action
+            android:id="@+id/action_cardDetailsFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/transactionFragment"
-        android:name="com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.TransactionFragment"
-        android:label="fragment_transaction"
-        tools:layout="@layout/fragment_transaction" />
     <fragment
         android:id="@+id/cardCreationFragment"
         android:name="com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.CardCreationFragment"
@@ -89,7 +84,8 @@
         tools:layout="@layout/fragment_send_money" >
         <action
             android:id="@+id/action_sendMoneyFragment_to_cardDetailsFragment"
-            app:destination="@id/cardDetailsFragment" />
+            app:destination="@id/cardDetailsFragment"
+            app:popUpTo="@id/cardDetailsFragment" />
         <argument
             android:name="idCard"
             app:argType="long" />

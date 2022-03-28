@@ -5,11 +5,14 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDao
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.PaymentDao
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.models.Card
 
-class CardDetailsViewModel(dao: CardDao, card: LiveData<Card>): ViewModel() {
+class CardDetailsViewModel(cardDao: CardDao, idCard: Long, paymentDao : PaymentDao): ViewModel() {
 
-    val card  = card
+    val card  = cardDao.readOneCard(idCard)
+
+    val listPayments = paymentDao.readAllTransactionOfCard(idCard)
 
     private var _navigateToAddMoney = MutableLiveData<Long?>()
     val navigateToAddMoney: LiveData<Long?>

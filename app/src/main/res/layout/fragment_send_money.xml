@@ -13,15 +13,17 @@
         android:layout_height="match_parent"
         tools:context=".AddMoneyFragment"
         android:orientation="vertical"
+        android:gravity="center"
         >
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Enter the Money to Send"
+            android:text="Send Money"
             android:textSize="24sp"
             android:gravity="center"
+            android:layout_marginBottom="12dp"
             />
 
         <EditText
@@ -30,21 +32,28 @@
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:gravity="center"
-            tools:text="Cantidad de Dinero"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            tools:text="Amount of Money"
+            android:layout_marginBottom="12dp"
             android:text="@={viewModel.money}"
-            />
+            android:hint="@string/enter_the_amount_of_money"
+            android:importantForAutofill="no" />
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Agregar Dinero"
-            android:onClick="@{()->viewModel.addMoney()}"
+            android:text="@string/send"
+            android:textStyle="bold"
+            android:onClick="@{()->viewModel.sendMoney()}"
             android:gravity="center"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
+            android:textColor="@color/red_500"
+            android:textSize="16sp"
+            tools:text="Insufficient Funds"
             android:text="@{viewModel.errorMessage}"
             />
         <TextView
@@ -54,6 +63,7 @@
             />
 
         <TextView
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{viewModel.card.bankName}"

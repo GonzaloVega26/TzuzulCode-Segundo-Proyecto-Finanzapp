@@ -3,4 +3,29 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="card_reader">Buton For card Details</string>
+    <string name="add_your_card">Add your Card</string>
+    <string name="enter_bank_name">Enter Bank Name</string>
+    <string name="enter_card_number">Enter Card Number</string>
+    <string name="enter_your_full_name"><u>Enter Your Full Name</u></string>
+    <string name="jon_doe">Jon Doe</string>
+    <string name="enter_since_date">Enter Since Date</string>
+    <string name="enter_pin_code">Enter Pin Code</string>
+    <string name="select_credit_or_debit"><u>Select Credit or Debit</u></string>
+    <string name="debit">Debit</string>
+    <string name="credit">Credit</string>
+    <string name="style_it">Style it!</string>
+    <string name="blue_color">Blue Color</string>
+    <string name="red_color">Red Color</string>
+    <string name="violet_color">Violet Color</string>
+    <string name="save">Save!</string>
+    <string name="create">Create!</string>
+    <string name="delete">Delete</string>
+    <string name="save_changes">Save Changes</string>
+    <string name="create_new_card">Create New Card</string>
+    <string name="add_money">Add!</string>
+    <string name="receive_money">Receive Money</string>
+    <string name="enter_the_amount_of_money">Enter the Amount of Money</string>
+    <string name="send">Send!</string>
+    <string name="recent_transaction"><u>Recent Transactions</u></string>
+    <string name="quick_actions">Quik Actions</string>
 </resources>

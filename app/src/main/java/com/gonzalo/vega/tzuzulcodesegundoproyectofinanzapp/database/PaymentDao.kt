@@ -23,5 +23,8 @@ interface PaymentDao {
     @Query("SELECT * FROM transactions WHERE idPayment= :idPayment")
     fun readOneTransaction(idPayment:Long): LiveData<Payment>
 
+    @Query("SELECT * FROM transactions WHERE idOfCard = :idCard")
+    fun readAllTransactionOfCard(idCard:Long) : LiveData<List<Payment>>
+
 
 }

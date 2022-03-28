@@ -22,11 +22,6 @@
             tools:context=".CardDetailsFragment">
 
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@{viewModel.card.bankName}" />
-
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -38,7 +33,7 @@
                     android:layout_height="300dp"
                     android:contentDescription="@string/card_reader"
                     android:scaleType="centerCrop"
-
+                    app:imageResource =  "@{viewModel.card.imageBG}"
                     tools:src="@drawable/fondo_tarjeta_1" />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,11 +43,12 @@
                     <TextView
                         android:id="@+id/bank_name"
                         android:layout_width="wrap_content"
-                        android:layout_height="32dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="16dp"
                         android:text="@{viewModel.card.bankName}"
                         android:textColor="@color/white"
+                        android:textStyle="bold"
                         android:textSize="20sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -61,24 +57,27 @@
                     <TextView
                         android:id="@+id/money"
                         android:layout_width="wrap_content"
-                        android:layout_height="32dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginEnd="8dp"
                         android:layout_marginBottom="16dp"
                         android:text="@{viewModel.card.readableMoney}"
                         android:textColor="@color/white"
                         android:textSize="20sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        tools:text="Dinero" />
+                        tools:text="Money" />
 
 
                     <TextView
                         android:id="@+id/card_number"
                         android:layout_width="wrap_content"
-                        android:layout_height="32dp"
+                        android:layout_height="wrap_content"
                         android:text="@{viewModel.card.cardNumber}"
                         android:textColor="@color/white"
+                        android:letterSpacing="0.4"
                         android:textSize="30sp"
+                        android:textStyle="bold"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -91,10 +90,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginBottom="24dp"
-                        android:text="@{viewModel.card.readableSince}"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toTopOf="@+id/owner_name"
                         app:layout_constraintStart_toStartOf="parent"
+                        android:text="@{viewModel.card.readableSinceDate}"
                         tools:text="Valid Since" />
 
                     <TextView
@@ -103,10 +103,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="24dp"
                         android:layout_marginBottom="24dp"
-                        android:text="@{viewModel.card.readableThru}"
                         android:textSize="16sp"
+                        android:textColor="@color/white"
                         app:layout_constraintBottom_toTopOf="@+id/owner_name"
                         app:layout_constraintStart_toEndOf="@+id/since"
+                        android:text="@{viewModel.card.readableThruDate}"
                         tools:text="Valid Thru" />
 
                     <TextView
@@ -116,6 +117,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_marginBottom="16dp"
                         android:text="@{viewModel.card.owner}"
+                        android:textColor="@color/white"
                         android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -129,17 +131,23 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Quik Actions" />
+                android:text="@string/quick_actions"
+                android:textSize="24sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                >
 
                 <ImageButton
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:background="@null"
+                    android:layout_marginHorizontal="15dp"
                     android:onClick="@{()->viewModel.onButtonAddMoneyClicked(viewModel.card.idCard)}"
                     android:scaleType="centerCrop"
                     android:src="@drawable/receive_money" />
@@ -148,66 +156,38 @@
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
+                    android:layout_marginHorizontal="15dp"
                     android:background="@null"
                     android:onClick="@{()->viewModel.onButtonSendMoneyClicked(viewModel.card.idCard)}"
                     android:src="@drawable/give_money" />
 
                 <ImageButton
+                    android:id="@+id/expandCreditBtn"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
                     android:scaleType="centerCrop"
+                    android:layout_marginHorizontal="15dp"
+                    android:background="@null"
                     android:src="@drawable/credit_expand" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recent Transactions"
+                android:text="@string/recent_transaction"
                 android:textSize="24sp"
 
                 />
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/payment_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Transaction 1"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Transaction 2"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Transaction 3"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Transaction 4"
-
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Transaction 5"
-
-                        />
-                </LinearLayout>
+                />
 
         </LinearLayout>
     </ScrollView>

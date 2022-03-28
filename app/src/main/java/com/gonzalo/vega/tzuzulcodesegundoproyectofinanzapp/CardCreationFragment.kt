@@ -13,7 +13,7 @@ import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.databinding.FragmentC
 
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.utils.MonthYearPickerDialog
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardCreationViewModel
-import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.CardCreationViewModelFactory
+import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.viewmodels.factories.CardCreationViewModelFactory
 
 
 

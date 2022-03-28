@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.gonzalo.vega.tzuzulcodesegundoproyectofinanzapp.database.CardDao
 
-class CardViewModel(dao:CardDao):ViewModel() {
+class AccountViewModel(dao:CardDao):ViewModel() {
     //val cardLiveData = dao.readAllCards()
     val cardList = dao.readAllCards()
 
